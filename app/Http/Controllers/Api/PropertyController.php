@@ -20,4 +20,8 @@ class PropertyController
     {
         return PropertyResource::collection($this->flatService->getAllFlatsProperties());
     }
+    public function showAllHousesProperties(): AnonymousResourceCollection
+    {
+        return PropertyResource::collection($this->flatService->getAllHousesProperties());
+    }
 }

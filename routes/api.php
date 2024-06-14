@@ -12,5 +12,6 @@ Route::controller(PropertyController::class)->group(function () {
     Route::group(['prefix' => '/property'], function () {
         Route::get('/all', 'showAllProperties');
         Route::get('/flats', 'showAllFlatsProperties');
+        Route::get('/houses', 'showAllHousesProperties');
     });
 });

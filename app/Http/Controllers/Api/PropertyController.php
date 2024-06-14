@@ -24,4 +24,8 @@ class PropertyController
     {
         return PropertyResource::collection($this->flatService->getAllHousesProperties());
     }
+    public function showAllCommercialProperties(): AnonymousResourceCollection
+    {
+        return PropertyResource::collection($this->flatService->getAllCommercialProperties());
+    }
 }

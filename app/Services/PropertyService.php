@@ -23,4 +23,9 @@ class PropertyService implements PropertyServiceContract
         return Property::query()->with('propertyImages')
             ->where('property_type', 'house')->paginate(10);
     }
+    public function getAllCommercialProperties(): LengthAwarePaginator
+    {
+        return Property::query()->with('propertyImages')
+            ->where('property_type', 'commercial')->paginate(10);
+    }
 }

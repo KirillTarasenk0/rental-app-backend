@@ -13,5 +13,6 @@ Route::controller(PropertyController::class)->group(function () {
         Route::get('/all', 'showAllProperties');
         Route::get('/flats', 'showAllFlatsProperties');
         Route::get('/houses', 'showAllHousesProperties');
+        Route::get('/commercial', 'showAllCommercialProperties');
     });
 });

@@ -13,4 +13,10 @@ class PropertyService implements PropertyServiceContract
     {
         return Property::query()->with('propertyImages')->paginate(10);
     }
+    public function getAllFlatsProperties(): LengthAwarePaginator
+    {
+        return Property::query()->with('propertyImages')
+            ->where('property_type', 'flat')->paginate(10);
+    }
+
 }

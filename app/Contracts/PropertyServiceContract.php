@@ -7,4 +7,5 @@ use Illuminate\Pagination\LengthAwarePaginator;
 interface PropertyServiceContract
 {
     public function getAllProperties(): LengthAwarePaginator;
+    public function getAllFlatsProperties(): LengthAwarePaginator;
 }

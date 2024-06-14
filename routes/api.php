@@ -9,7 +9,8 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::controller(PropertyController::class)->group(function () {
-    Route::group(['prefix' => '/flat'], function () {
+    Route::group(['prefix' => '/property'], function () {
         Route::get('/all', 'showAllProperties');
+        Route::get('/flats', 'showAllFlatsProperties');
     });
 });

@@ -24,6 +24,7 @@ class Property extends Model
         'furnished',
         'parking',
         'internet',
+        'city',
     ];
     public function user(): BelongsTo
     {

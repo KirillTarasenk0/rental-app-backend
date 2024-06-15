@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PropertyGetTypeController;
 use App\Http\Controllers\Api\PropertyGetPriceController;
 use App\Http\Controllers\Api\PropertyGetRoomsController;
+use App\Http\Controllers\Api\PropertySearchController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -24,6 +25,8 @@ Route::group(['prefix' => 'property'], function () {
         Route::get('/medium', 'showMediumPriceProperties');
         Route::get('/expensive', 'showExpensivePriceProperties');
     });
+
+    Route::get('/find', [PropertySearchController::class, 'showSearchedProperties']);
 
     Route::get('/{roomsCount}', [PropertyGetRoomsController::class, 'showRoomsCountProperties']);
 });

@@ -23,6 +23,7 @@ class PropertyFactory extends Factory
             'furnished' => fake()->boolean,
             'parking' => fake()->boolean,
             'internet' => fake()->boolean,
+            'city' => fake()->randomElement(['Minsk', 'Grodno', 'Brest', 'Gomel', 'Mogilev', 'Vitebsk'])
         ];
     }
 }

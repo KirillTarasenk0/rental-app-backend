@@ -25,6 +25,7 @@ class PropertyResource extends JsonResource
             'furnished' => $this->furnished,
             'parking' => $this->parking,
             'internet' => $this->internet,
+            'city' => $this->city,
             'property_images' => PropertyImageResource::collection($this->whenLoaded('propertyImages')),
         ];
     }

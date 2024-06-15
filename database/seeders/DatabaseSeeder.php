@@ -21,13 +21,5 @@ class DatabaseSeeder extends Seeder
                 ->has(Review::factory()->count(1))
                 ->has(Favorite::factory()->count(1))
         )->create();
-        /*$this->call([
-            UserSeeder::class,
-            PropertySeeder::class,
-            PropertyImageSeeder::class,
-            RentalRequestSeeder::class,
-            ReviewSeeder::class,
-            FavoriteSeeder::class
-        ]);*/
     }
 }

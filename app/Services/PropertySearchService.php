@@ -12,6 +12,9 @@ class PropertySearchService implements PropertySearchServiceContract
     public function getSearchedProperties(PropertyRequest $request): LengthAwarePaginator
     {
         $propertiesQuery = Property::query();
+        $propertiesQuery->when($request->filled('id'), function ($query) use ($request) {
+            return $query->where('id', $request['id']);
+        });
         $propertiesQuery->when($request->filled('property_type'), function ($query) use ($request) {
             return $query->where('property_type', $request['property_type']);
         });

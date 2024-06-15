@@ -29,4 +29,6 @@ Route::group(['prefix' => 'property'], function () {
     Route::get('/find', [PropertySearchController::class, 'showSearchedProperties'])->name('filtered-properties');
 
     Route::get('/{roomsCount}', [PropertyGetRoomsController::class, 'showRoomsCountProperties'])->name('filtered-rooms-properties');
+
+
 });

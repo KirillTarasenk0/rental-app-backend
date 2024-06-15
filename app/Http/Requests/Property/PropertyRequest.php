@@ -13,6 +13,7 @@ class PropertyRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'id' => ['sometimes', 'numeric'],
             'title' => ['sometimes', 'string', 'min:3', 'max:80'],
             'address' => ['sometimes', 'string', 'min:3', 'max:120'],
             'price' => ['sometimes', 'numeric'],

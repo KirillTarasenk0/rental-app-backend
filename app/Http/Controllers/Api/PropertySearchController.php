@@ -6,7 +6,6 @@ use App\Http\Requests\Property\PropertyRequest;
 use App\Services\PropertySearchService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use App\Http\Resources\PropertyResource;
-use Illuminate\Http\Request;
 
 class PropertySearchController
 {

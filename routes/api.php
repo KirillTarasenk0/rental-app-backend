@@ -14,19 +14,19 @@ Route::get('/user', function (Request $request) {
 Route::group(['prefix' => 'property'], function () {
 
     Route::controller(PropertyGetTypeController::class)->group(function () {
-        Route::get('/all', 'showAllProperties');
-        Route::get('/flats', 'showAllFlatsProperties');
-        Route::get('/houses', 'showAllHousesProperties');
-        Route::get('/commercial', 'showAllCommercialProperties');
+        Route::get('/all', 'showAllProperties')->name('all-properties');
+        Route::get('/flats', 'showAllFlatsProperties')->name('flats-properties');
+        Route::get('/houses', 'showAllHousesProperties')->name('houses-properties');
+        Route::get('/commercial', 'showAllCommercialProperties')->name('commercial-properties');
     });
 
     Route::controller(PropertyGetPriceController::class)->group(function () {
-        Route::get('/cheep', 'showCheepPriceProperties');
-        Route::get('/medium', 'showMediumPriceProperties');
-        Route::get('/expensive', 'showExpensivePriceProperties');
+        Route::get('/cheep', 'showCheepPriceProperties')->name('cheep-properties');
+        Route::get('/medium', 'showMediumPriceProperties')->name('medium-properties');
+        Route::get('/expensive', 'showExpensivePriceProperties')->name('expensive-properties');
     });
 
-    Route::get('/find', [PropertySearchController::class, 'showSearchedProperties']);
+    Route::get('/find', [PropertySearchController::class, 'showSearchedProperties'])->name('filtered-properties');
 
-    Route::get('/{roomsCount}', [PropertyGetRoomsController::class, 'showRoomsCountProperties']);
+    Route::get('/{roomsCount}', [PropertyGetRoomsController::class, 'showRoomsCountProperties'])->name('filtered-rooms-properties');
 });

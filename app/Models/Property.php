@@ -42,7 +42,7 @@ class Property extends Model
     {
         return $this->hasMany(Review::class);
     }
-    public function favourites(): HasMany
+    public function favorites(): HasMany
     {
         return $this->hasMany(Favorite::class);
     }

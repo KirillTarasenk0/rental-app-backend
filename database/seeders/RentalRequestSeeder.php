@@ -10,6 +10,6 @@ class RentalRequestSeeder extends Seeder
 {
     public function run(): void
     {
-        RentalRequest::factory()->count(10)->create();
+        RentalRequest::factory()->count(20)->create();
     }
 }

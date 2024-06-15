@@ -10,6 +10,6 @@ class PropertyImageSeeder extends Seeder
 {
     public function run(): void
     {
-        PropertyImage::factory()->count(5)->create();
+        PropertyImage::factory()->count(20)->create();
     }
 }

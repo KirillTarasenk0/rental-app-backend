@@ -10,6 +10,6 @@ class FavoriteSeeder extends Seeder
 {
     public function run(): void
     {
-        Favorite::factory()->count(5)->create();
+        Favorite::factory()->count(20)->create();
     }
 }

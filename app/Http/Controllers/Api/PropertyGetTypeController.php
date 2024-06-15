@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\Property\CreatePropertyRequest;
-use App\Services\PropertyService;
+use App\Services\PropertyGetTypeService;
 use App\Http\Resources\PropertyResource;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class PropertyController
+class PropertyGetTypeController
 {
     public function __construct(
-        private PropertyService $flatService
+        private PropertyGetTypeService $flatService
     ) {}
     public function showAllProperties(): AnonymousResourceCollection
     {

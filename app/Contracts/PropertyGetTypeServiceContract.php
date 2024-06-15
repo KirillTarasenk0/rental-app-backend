@@ -4,7 +4,7 @@ namespace App\Contracts;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 
-interface PropertyServiceContract
+interface PropertyGetTypeServiceContract
 {
     public function getAllProperties(): LengthAwarePaginator;
     public function getAllFlatsProperties(): LengthAwarePaginator;

@@ -5,9 +5,9 @@ namespace App\Services;
 use App\Models\Property;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
-use App\Contracts\PropertyServiceContract;
+use App\Contracts\PropertyGetTypeServiceContract;
 
-class PropertyService implements PropertyServiceContract
+class PropertyGetTypeService implements PropertyGetTypeServiceContract
 {
     public function getAllProperties(): LengthAwarePaginator
     {

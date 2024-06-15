@@ -2,17 +2,23 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\PropertyController;
+use App\Http\Controllers\Api\PropertyGetTypeController;
+use App\Http\Controllers\Api\PropertyGetPriceController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::controller(PropertyController::class)->group(function () {
-    Route::group(['prefix' => '/property'], function () {
+Route::group(['prefix' => 'property'], function () {
+    Route::controller(PropertyGetTypeController::class)->group(function () {
         Route::get('/all', 'showAllProperties');
         Route::get('/flats', 'showAllFlatsProperties');
         Route::get('/houses', 'showAllHousesProperties');
         Route::get('/commercial', 'showAllCommercialProperties');
+    });
+    Route::controller(PropertyGetPriceController::class)->group(function () {
+        Route::get('/cheep', 'showCheepPriceProperties');
+        Route::get('/medium', 'showMediumPriceProperties');
+        Route::get('/expensive', 'showExpensivePriceProperties');
     });
 });

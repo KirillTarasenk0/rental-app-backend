@@ -11,16 +11,16 @@ class PropertyGetPriceService implements PropertyGetPriceServiceContract
     public function getCheepPriceProperties(): LengthAwarePaginator
     {
         return Property::query()->with('propertyImages')
-            ->where('price', '<', 150000)->paginate();
+            ->where('price', '<', 30000)->paginate();
     }
     public function getMediumPriceProperties(): LengthAwarePaginator
     {
         return Property::query()->with('propertyImages')
-            ->whereBetween('price', [150000, 250000])->paginate();
+            ->whereBetween('price', [30000, 80000])->paginate();
     }
     public function getExpensivePriceProperties(): LengthAwarePaginator
     {
         return Property::query()->with('propertyImages')
-            ->where('price', '>', 250000)->paginate();
+            ->where('price', '>', 80000)->paginate();
     }
 }

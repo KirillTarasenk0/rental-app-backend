@@ -8,14 +8,14 @@ use App\Models\Property;
 
 class PropertyGetRoomsService implements PropertyGetRoomsServiceContract
 {
-    public function getRoomsCountProperties(int $roomsCount): LengthAwarePaginator
+    public function getRoomsCountProperties(string $roomsCount): LengthAwarePaginator
     {
-        if ($roomsCount <= 6) {
+        if ($roomsCount === 'more') {
             return Property::query()->with('propertyImages')
-                ->where('rooms', $roomsCount)->paginate();
+                ->where('rooms', '>', 6)->paginate();
         } else {
             return Property::query()->with('propertyImages')
-                ->where('rooms', '>', $roomsCount)->paginate();
+                ->where('rooms', $roomsCount)->paginate();
         }
     }
 }

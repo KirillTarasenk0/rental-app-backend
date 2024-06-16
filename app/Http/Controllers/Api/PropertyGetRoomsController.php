@@ -11,7 +11,7 @@ class PropertyGetRoomsController
     public function __construct(
         private PropertyGetRoomsService $propertyGetRoomsService
     ) {}
-    public function showRoomsCountProperties(int $roomsCount): AnonymousResourceCollection
+    public function showRoomsCountProperties(string $roomsCount): AnonymousResourceCollection
     {
         return PropertyResource::collection($this->propertyGetRoomsService->getRoomsCountProperties($roomsCount));
     }

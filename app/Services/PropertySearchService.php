@@ -19,7 +19,11 @@ class PropertySearchService implements PropertySearchServiceContract
             return $query->where('property_type', $request['property_type']);
         });
         $propertiesQuery->when($request->filled('rooms'), function ($query) use ($request) {
-            return $query->where('rooms', $request['rooms']);
+            if ($request['rooms'] === 'more_rooms') {
+                return $query->where('rooms', '>', 6);
+            } else {
+                return $query->where('rooms', $request['rooms']);
+            }
         });
         $propertiesQuery->when($request->filled('price_from'), function ($query) use ($request) {
             return $query->where('price', '>=', $request['price_from']);

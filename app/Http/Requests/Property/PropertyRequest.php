@@ -19,7 +19,7 @@ class PropertyRequest extends FormRequest
             'price' => ['sometimes', 'numeric'],
             'description' => ['sometimes', 'string', 'min:3', 'max:250'],
             'property_type' => ['sometimes', 'in:flat,house,commercial'],
-            'rooms' => ['sometimes', 'numeric'],
+            'rooms' => ['sometimes'],
             'area' => ['sometimes', 'numeric'],
             'floor' => ['sometimes', 'numeric'],
             'total_floors' => ['sometimes', 'numeric'],

@@ -32,5 +32,4 @@ Route::group(['prefix' => 'property'], function () {
         ->where('roomsCount', '[0-9]+|more')
         ->name('filtered-rooms-properties');
 
-
 });

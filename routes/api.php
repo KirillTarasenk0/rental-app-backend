@@ -8,9 +8,9 @@ use App\Http\Controllers\Api\PropertyGetRoomsController;
 use App\Http\Controllers\Api\PropertySearchController;
 use App\Http\Controllers\AuthController;
 
-Route::get('/user', function (Request $request) {
+/*Route::get('/user', function (Request $request) {
     return $request->user();
-})->middleware('auth:api');
+})->middleware('auth:api');*/
 
 Route::group(['prefix' => 'property'], function () {
 
@@ -37,5 +37,5 @@ Route::group(['prefix' => 'property'], function () {
 Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login')->name('login');
     Route::post('/register', 'register')->name('register');
-    Route::post('/user', 'user')->name('user')->middleware('auth:api');
+    Route::get('/user', 'user')->name('user')->middleware('auth:api');
 });

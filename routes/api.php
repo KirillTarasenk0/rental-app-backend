@@ -6,10 +6,11 @@ use App\Http\Controllers\Api\PropertyGetTypeController;
 use App\Http\Controllers\Api\PropertyGetPriceController;
 use App\Http\Controllers\Api\PropertyGetRoomsController;
 use App\Http\Controllers\Api\PropertySearchController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
-})->middleware('auth:sanctum');
+})->middleware('auth:api');
 
 Route::group(['prefix' => 'property'], function () {
 
@@ -31,5 +32,10 @@ Route::group(['prefix' => 'property'], function () {
     Route::get('/{roomsCount}', [PropertyGetRoomsController::class, 'showRoomsCountProperties'])
         ->where('roomsCount', '[0-9]+|more')
         ->name('filtered-rooms-properties');
+});
 
+Route::controller(AuthController::class)->group(function () {
+    Route::post('/login', 'login')->name('login');
+    Route::post('/register', 'register')->name('register');
+    Route::post('/user', 'user')->name('user')->middleware('auth:api');
 });

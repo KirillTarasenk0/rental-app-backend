@@ -1,16 +1,12 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\PropertyGetTypeController;
 use App\Http\Controllers\Api\PropertyGetPriceController;
 use App\Http\Controllers\Api\PropertyGetRoomsController;
 use App\Http\Controllers\Api\PropertySearchController;
 use App\Http\Controllers\AuthController;
-
-/*Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');*/
+use App\Http\Controllers\Api\UserProfileController;
 
 Route::group(['prefix' => 'property'], function () {
 
@@ -38,4 +34,10 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login')->name('login');
     Route::post('/register', 'register')->name('register');
     Route::get('/user', 'user')->name('user')->middleware('auth:api');
+});
+
+Route::controller(UserProfileController::class)->group(function () {
+    Route::group(['prefix' => 'profile'], function () {
+        Route::patch('/edit', 'editUserProfileData')->name('edit-profile')->middleware('auth:api');
+    });
 });

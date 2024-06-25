@@ -16,11 +16,13 @@ class AuthController
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role' => ['required', 'string'],
         ]);
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
+            'role' => $request['role'],
         ]);
         $token = $user->createToken('auth_token')->accessToken;
         return response()->json(['token' => $token], 200);

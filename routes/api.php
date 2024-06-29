@@ -38,6 +38,6 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::controller(UserProfileController::class)->group(function () {
     Route::group(['prefix' => 'profile'], function () {
-        Route::patch('/edit', 'editUserProfileData')->name('edit-profile')->middleware('auth:api');
+        Route::post('/edit', 'editUserProfileData')->name('edit-profile')->middleware('auth:api');
     });
 });

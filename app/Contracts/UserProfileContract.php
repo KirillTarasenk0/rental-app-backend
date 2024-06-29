@@ -7,5 +7,5 @@ use App\Models\User;
 
 interface UserProfileContract
 {
-    public function changeUserProfileData(UserEditProfileRequest $request): User;
+    public function changeUserProfileData(UserEditProfileRequest $request, User $user): User;
 }

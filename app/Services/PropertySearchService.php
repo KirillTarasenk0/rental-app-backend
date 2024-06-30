@@ -6,6 +6,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use App\Contracts\PropertySearchServiceContract;
 use App\Models\Property;
 use App\Http\Requests\Property\PropertyRequest;
+use Illuminate\Database\Eloquent\Collection;
 
 class PropertySearchService implements PropertySearchServiceContract
 {
@@ -35,5 +36,10 @@ class PropertySearchService implements PropertySearchServiceContract
             return $query->where('city', $request['city']);
         });
         return $propertiesQuery->paginate();
+    }
+
+    public function getUserAddedProperties(int $userId): Collection
+    {
+        return Property::query()->with('propertyImages')->where('user_id', $userId)->get();
     }
 }

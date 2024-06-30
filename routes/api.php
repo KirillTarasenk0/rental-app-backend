@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\PropertyGetRoomsController;
 use App\Http\Controllers\Api\PropertySearchController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\UserProfileController;
+use App\Http\Controllers\Api\AddPropertyController;
 
 Route::group(['prefix' => 'property'], function () {
 
@@ -28,6 +29,10 @@ Route::group(['prefix' => 'property'], function () {
     Route::get('/{roomsCount}', [PropertyGetRoomsController::class, 'showRoomsCountProperties'])
         ->where('roomsCount', '[0-9]+|more')
         ->name('filtered-rooms-properties');
+
+    Route::middleware('auth:api')->group(function () {
+        Route::post('/addProperty', [AddPropertyController::class, 'store'])->name('add-property');
+    });
 });
 
 Route::controller(AuthController::class)->group(function () {

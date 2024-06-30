@@ -5,11 +5,12 @@ namespace App\Services;
 use App\Contracts\UserProfileContract;
 use App\Models\User;
 use App\Http\Requests\UserEditProfileRequest;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Log;
+use App\Traits\UploadUserPhotoTrait;
 
 class UserProfileService implements UserProfileContract
 {
+    use UploadUserPhotoTrait;
+
     public function changeUserProfileData(UserEditProfileRequest $request, User $user): User
     {
         if ($request->has('name')) {
@@ -28,20 +29,5 @@ class UserProfileService implements UserProfileContract
         }
         $user->save();
         return $user;
-    }
-
-    private function uploadFile(UploadedFile $file): string
-    {
-        try {
-            if (!$file->isValid()) {
-                throw new \Exception('Invalid file upload.');
-            }
-            $fileName = uniqid() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('avatars', $fileName, 'public');
-            return $fileName;
-        } catch (\Exception $e) {
-            Log::error('Failed to upload file: ' . $e->getMessage());
-            return '';
-        }
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Property;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddFavouritePropertyRequest extends FormRequest
+class AddFavoritePropertyRequest extends FormRequest
 {
     public function authorize(): bool
     {

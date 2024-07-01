@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\UserProfileController;
 use App\Http\Controllers\Api\AddPropertyController;
 use App\Http\Controllers\Api\GetUserAddedPropertiesController;
+use App\Http\Controllers\Api\AddFavouritePropertyController;
 
 Route::group(['prefix' => 'property'], function () {
 
@@ -34,6 +35,7 @@ Route::group(['prefix' => 'property'], function () {
     Route::middleware('auth:api')->group(function () {
         Route::post('/addProperty', [AddPropertyController::class, 'store'])->name('add-property');
         Route::get('/getUserAddedProperty/{userId}', [GetUserAddedPropertiesController::class, 'index'])->name('get-user-property');
+        Route::post('/addFavouriteProperty', [AddFavouritePropertyController::class, 'store'])->name('add-favourite-property');
     });
 });
 

@@ -40,4 +40,9 @@ class FavoritePropertyService implements FavoritePropertyServiceContract
                 return $favorite->property;
             });
     }
+
+    public function deleteFavoriteProperty(int $id): void
+    {
+        Favorite::query()->where('property_id', $id)->delete();
+    }
 }

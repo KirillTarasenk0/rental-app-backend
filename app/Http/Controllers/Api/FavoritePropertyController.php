@@ -4,24 +4,30 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\JsonResponse;
 use App\Services\FavoritePropertyService;
-use App\Http\Requests\Property\AddFavoritePropertyRequest;
+use App\Http\Requests\Property\FavoritePropertyRequest;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use App\Http\Resources\PropertyResource;
 
 class FavoritePropertyController
 {
     public function __construct(
-        private readonly FavoritePropertyService $favouritePropertyService,
+        private readonly FavoritePropertyService $favoritePropertyService,
     ) {}
 
-    public function store(AddFavoritePropertyRequest $request): JsonResponse
+    public function store(FavoritePropertyRequest $request): JsonResponse
     {
-        $this->favouritePropertyService->addFavoriteProperty($request['id']);
-        return response()->json(['status' => 'success'], 200);
+        $this->favoritePropertyService->addFavoriteProperty($request['id']);
+        return response()->json(['status' => 'property was added to favorite'], 200);
     }
 
     public function index(): AnonymousResourceCollection
     {
-        return PropertyResource::collection($this->favouritePropertyService->getFavoriteProperties());
+        return PropertyResource::collection($this->favoritePropertyService->getFavoriteProperties());
+    }
+
+    public function destroy(FavoritePropertyRequest $request): JsonResponse
+    {
+        $this->favoritePropertyService->deleteFavoriteProperty($request['id']);
+        return response()->json(['status' => 'property was deleted from favorite']);
     }
 }

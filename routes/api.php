@@ -40,6 +40,7 @@ Route::group(['prefix' => 'property'], function () {
         Route::controller(FavoritePropertyController::class)->group(function () {
             Route::post('/addFavouriteProperty', 'store')->name('add-favourite-property');
             Route::get('/getFavouriteProperties', 'index')->name('get-favourite-property');
+            Route::delete('/deleteFavouriteProperty', 'destroy')->name('delete-favourite-property');
         });
     });
 });

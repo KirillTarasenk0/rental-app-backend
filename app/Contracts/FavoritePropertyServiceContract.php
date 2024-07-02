@@ -8,4 +8,5 @@ interface FavoritePropertyServiceContract
 {
     public function addFavoriteProperty(int $id): void;
     public function getFavoriteProperties(): Collection;
+    public function deleteFavoriteProperty(int $id): void;
 }

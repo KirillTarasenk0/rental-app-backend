@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\UserEditProfileRequest;
 use App\Services\UserProfileService;
 use Illuminate\Support\Facades\Auth;
 
-class UserProfileController
+class UserProfileController extends Controller
 {
     public function __construct(
         private readonly UserProfileService $userProfileService,

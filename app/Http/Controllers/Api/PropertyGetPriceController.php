@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use App\Http\Resources\PropertyResource;
 use App\Services\PropertyGetPriceService;
 
-class PropertyGetPriceController
+class PropertyGetPriceController extends Controller
 {
     public function __construct(
         private PropertyGetPriceService $propertyGetPriceService

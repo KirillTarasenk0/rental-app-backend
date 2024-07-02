@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\UserProfileController;
 use App\Http\Controllers\Api\AddPropertyController;
 use App\Http\Controllers\Api\GetUserAddedPropertiesController;
 use App\Http\Controllers\Api\FavoritePropertyController;
+use App\Http\Controllers\Api\BookPropertyController;
 
 Route::group(['prefix' => 'property'], function () {
 
@@ -41,6 +42,10 @@ Route::group(['prefix' => 'property'], function () {
             Route::post('/addFavouriteProperty', 'store')->name('add-favourite-property');
             Route::get('/getFavouriteProperties', 'index')->name('get-favourite-property');
             Route::delete('/deleteFavouriteProperty', 'destroy')->name('delete-favourite-property');
+        });
+
+        Route::controller(BookPropertyController::class)->group(function () {
+            Route::post('/bookProperty', 'store');
         });
     });
 });

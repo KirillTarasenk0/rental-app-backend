@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Services\PropertyGetTypeService;
 use App\Http\Resources\PropertyResource;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class PropertyGetTypeController
+class PropertyGetTypeController extends Controller
 {
     public function __construct(
         private PropertyGetTypeService $flatService

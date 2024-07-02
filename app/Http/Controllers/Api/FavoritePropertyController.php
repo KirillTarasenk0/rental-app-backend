@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use App\Services\FavoritePropertyService;
 use App\Http\Requests\Property\FavoritePropertyRequest;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use App\Http\Resources\PropertyResource;
 
-class FavoritePropertyController
+class FavoritePropertyController extends Controller
 {
     public function __construct(
         private readonly FavoritePropertyService $favoritePropertyService,

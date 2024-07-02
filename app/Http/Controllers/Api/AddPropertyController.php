@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use App\Services\AddPropertyService;
 use Illuminate\Http\Request;
 
-class AddPropertyController
+class AddPropertyController extends Controller
 {
     public function __construct(
         private readonly AddPropertyService $addPropertyService,

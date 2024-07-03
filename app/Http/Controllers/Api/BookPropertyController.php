@@ -35,7 +35,7 @@ class BookPropertyController extends Controller
     public function destroy(Request $request): JsonResponse
     {
         $this->bookPropertyService->deleteBookedProperty($request['id']);
-        return response()->json([]);
+        return response()->json(['status' => 'property was deleted'], 200);
     }
 }
 

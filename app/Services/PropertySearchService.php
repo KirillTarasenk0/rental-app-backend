@@ -37,9 +37,4 @@ class PropertySearchService implements PropertySearchServiceContract
         });
         return $propertiesQuery->paginate();
     }
-
-    public function getUserAddedProperties(int $userId): Collection
-    {
-        return Property::query()->with('propertyImages')->where('user_id', $userId)->get();
-    }
 }

@@ -2,14 +2,15 @@
 
 namespace App\Services;
 
-use App\Contracts\AddPropertyServiceContract;
+use App\Contracts\UserPropertyServiceContract;
 use App\Models\Property;
 use App\Models\PropertyImage;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Traits\UploadPropertyPhotoTrait;
 
-class AddPropertyService implements AddPropertyServiceContract
+class UserPropertyService implements UserPropertyServiceContract
 {
     use UploadPropertyPhotoTrait;
 
@@ -39,5 +40,10 @@ class AddPropertyService implements AddPropertyServiceContract
                 'image_path' => $url,
             ]);
         }
+    }
+
+    public function getUserAddedProperties(int $userId): Collection
+    {
+        return Property::query()->with('propertyImages')->where('user_id', $userId)->get();
     }
 }

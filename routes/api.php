@@ -7,8 +7,7 @@ use App\Http\Controllers\Api\PropertyGetRoomsController;
 use App\Http\Controllers\Api\PropertySearchController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\UserProfileController;
-use App\Http\Controllers\Api\AddPropertyController;
-use App\Http\Controllers\Api\GetUserAddedPropertiesController;
+use App\Http\Controllers\Api\UserPropertyController;
 use App\Http\Controllers\Api\FavoritePropertyController;
 use App\Http\Controllers\Api\BookPropertyController;
 
@@ -34,9 +33,10 @@ Route::group(['prefix' => 'property'], function () {
         ->name('filtered-rooms-properties');
 
     Route::middleware('auth:api')->group(function () {
-        Route::post('/addProperty', [AddPropertyController::class, 'store'])->name('add-property');
-
-        Route::get('/getUserAddedProperty/{userId}', [GetUserAddedPropertiesController::class, 'index'])->name('get-user-property');
+        Route::controller(UserPropertyController::class)->group(function () {
+            Route::post('/addProperty', 'store')->name('add-property');
+            Route::get('/getUserAddedProperty/{userId}', 'index')->name('get-user-property');
+        });
 
         Route::controller(FavoritePropertyController::class)->group(function () {
             Route::post('/addFavouriteProperty', 'store')->name('add-favourite-property');

@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Contracts\BookPropertyServiceContract;
 use App\Http\Requests\Property\BookPropertyRequest;
 use App\Models\RentalRequest;
+use App\Models\Property;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class BookPropertyService implements BookPropertyServiceContract
@@ -20,6 +22,16 @@ class BookPropertyService implements BookPropertyServiceContract
             'comment' => $request->get('comment'),
             'status' => 'expectation',
         ]);
+    }
+
+    public function getBookedProperties(): Collection
+    {
+        return Property::query()
+            ->whereHas('rentalRequests', function ($query) {
+                $query->where('user_id', Auth::id());
+            })
+            ->with('propertyImages')
+            ->get();
     }
 }
 

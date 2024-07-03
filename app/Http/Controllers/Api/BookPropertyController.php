@@ -7,6 +7,8 @@ use App\Services\BookPropertyService;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\Property\BookPropertyRequest;
 use Exception;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use App\Http\Resources\PropertyResource;
 
 class BookPropertyController extends Controller
 {
@@ -22,6 +24,11 @@ class BookPropertyController extends Controller
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+
+    public function index(): AnonymousResourceCollection
+    {
+        return PropertyResource::collection($this->bookPropertyService->getBookedProperties());
     }
 }
 

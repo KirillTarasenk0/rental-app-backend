@@ -7,6 +7,7 @@ use App\Services\BookPropertyService;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\Property\BookPropertyRequest;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use App\Http\Resources\PropertyResource;
 
@@ -29,6 +30,12 @@ class BookPropertyController extends Controller
     public function index(): AnonymousResourceCollection
     {
         return PropertyResource::collection($this->bookPropertyService->getBookedProperties());
+    }
+
+    public function destroy(Request $request): JsonResponse
+    {
+        $this->bookPropertyService->deleteBookedProperty($request['id']);
+        return response()->json([]);
     }
 }
 

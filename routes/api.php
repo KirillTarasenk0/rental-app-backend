@@ -47,6 +47,7 @@ Route::group(['prefix' => 'property'], function () {
         Route::controller(BookPropertyController::class)->group(function () {
             Route::post('/bookProperty', 'store');
             Route::get('/getBookedProperties', 'index');
+            Route::delete('/deleteBookedProperty', 'destroy');
         });
     });
 });

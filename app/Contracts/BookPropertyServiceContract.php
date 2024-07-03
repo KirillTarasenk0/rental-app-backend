@@ -9,4 +9,5 @@ interface BookPropertyServiceContract
 {
     public function bookProperty(BookPropertyRequest $request): void;
     public function getBookedProperties(): Collection;
+    public function deleteBookedProperty(int $id): void;
 }

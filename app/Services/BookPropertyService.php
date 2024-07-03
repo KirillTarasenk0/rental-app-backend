@@ -33,5 +33,9 @@ class BookPropertyService implements BookPropertyServiceContract
             ->with('propertyImages')
             ->get();
     }
-}
 
+    public function deleteBookedProperty(int $id): void
+    {
+        RentalRequest::query()->where('property_id', $id)->delete();
+    }
+}

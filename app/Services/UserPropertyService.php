@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\UserPropertyServiceContract;
+use App\Http\Requests\Property\UpdateUserPropertyRequest;
 use App\Models\Property;
 use App\Models\PropertyImage;
 use Illuminate\Database\Eloquent\Collection;
@@ -50,5 +51,38 @@ class UserPropertyService implements UserPropertyServiceContract
     public function deleteUserAddedProperty(int $id): void
     {
         Property::query()->find($id)->delete();
+    }
+
+    public function updateUserAddedProperty(UpdateUserPropertyRequest $request): void
+    {
+        $property = Property::query()->findOrFail($request->id);
+        $data = $request->only([
+            'title',
+            'address',
+            'price',
+            'description',
+            'property_type',
+            'rooms',
+            'area',
+            'floor',
+            'total_floors',
+            'furnished',
+            'parking',
+            'internet',
+            'city'
+        ]);
+        $data['user_id'] = Auth::id();
+        $data = array_filter($data, function ($value) {
+            return $value !== null;
+        });
+        $property->update($data);
+        if ($request->hasFile('image')) {
+            $propertyImage = $request->file('image');
+            $url = $this->uploadFile($propertyImage);
+            PropertyImage::query()->create([
+                'property_id' => $property->id,
+                'image_path' => $url,
+            ]);
+        }
     }
 }

@@ -37,6 +37,7 @@ Route::group(['prefix' => 'property'], function () {
             Route::post('/addProperty', 'store')->name('add-user-property');
             Route::get('/getUserAddedProperty/{userId}', 'index')->name('get-user-property');
             Route::delete('/deleteUserAddedProperty', 'destroy')->name('delete-user-property');
+            Route::post('/updateUserAddedProperty', 'update')->name('update-user-property');
         });
 
         Route::controller(FavoritePropertyController::class)->group(function () {

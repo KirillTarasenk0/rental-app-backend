@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use App\Services\UserPropertyService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use App\Http\Requests\Property\UpdateUserPropertyRequest;
 
 class UserPropertyController extends Controller
 {
@@ -34,5 +35,15 @@ class UserPropertyController extends Controller
     {
         $this->userPropertyService->deleteUserAddedProperty($request['id']);
         return response()->json(['status' => 'property was successfully delete']);
+    }
+
+    public function update(UpdateUserPropertyRequest $request): JsonResponse
+    {
+        try {
+            $this->userPropertyService->updateUserAddedProperty($request);
+            return response()->json(['status' => 'property was successfully updated']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 }

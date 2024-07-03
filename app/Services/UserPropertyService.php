@@ -46,4 +46,9 @@ class UserPropertyService implements UserPropertyServiceContract
     {
         return Property::query()->with('propertyImages')->where('user_id', $userId)->get();
     }
+
+    public function deleteUserAddedProperty(int $id): void
+    {
+        Property::query()->find($id)->delete();
+    }
 }

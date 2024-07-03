@@ -34,8 +34,9 @@ Route::group(['prefix' => 'property'], function () {
 
     Route::middleware('auth:api')->group(function () {
         Route::controller(UserPropertyController::class)->group(function () {
-            Route::post('/addProperty', 'store')->name('add-property');
+            Route::post('/addProperty', 'store')->name('add-user-property');
             Route::get('/getUserAddedProperty/{userId}', 'index')->name('get-user-property');
+            Route::delete('/deleteUserAddedProperty', 'destroy')->name('delete-user-property');
         });
 
         Route::controller(FavoritePropertyController::class)->group(function () {

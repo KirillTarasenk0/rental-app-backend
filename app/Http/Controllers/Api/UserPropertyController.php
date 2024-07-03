@@ -29,4 +29,10 @@ class UserPropertyController extends Controller
     {
         return PropertyResource::collection($this->userPropertyService->getUserAddedProperties($userId));
     }
+
+    public function destroy(Request $request): JsonResponse
+    {
+        $this->userPropertyService->deleteUserAddedProperty($request['id']);
+        return response()->json(['status' => 'property was successfully delete']);
+    }
 }

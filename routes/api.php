@@ -55,6 +55,7 @@ Route::group(['prefix' => 'property'], function () {
 
         Route::controller(ReviewController::class)->group(function () {
             Route::post('/addReview', 'store')->name('add-property-review');
+            Route::get('/getReviews/{id}', 'index')->name('get-property-review');
         });
     });
 });

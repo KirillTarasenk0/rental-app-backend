@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Services\ReviewService;
 use App\Http\Requests\Review\ReviewRequest;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use App\Http\Resources\ReviewResource;
 
 class ReviewController extends Controller
 {
@@ -22,5 +23,10 @@ class ReviewController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to add review', 'message' => $e->getMessage()], 500);
         }
+    }
+
+    public function index(int $id): AnonymousResourceCollection
+    {
+        return ReviewResource::collection($this->reviewService->getReviews($id));
     }
 }

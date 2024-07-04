@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\UserProfileController;
 use App\Http\Controllers\Api\UserPropertyController;
 use App\Http\Controllers\Api\FavoritePropertyController;
 use App\Http\Controllers\Api\BookPropertyController;
+use App\Http\Controllers\Api\ReviewController;
 
 Route::group(['prefix' => 'property'], function () {
 
@@ -50,6 +51,10 @@ Route::group(['prefix' => 'property'], function () {
             Route::post('/bookProperty', 'store');
             Route::get('/getBookedProperties', 'index');
             Route::delete('/deleteBookedProperty', 'destroy');
+        });
+
+        Route::controller(ReviewController::class)->group(function () {
+            Route::post('/addReview', 'store')->name('add-property-review');
         });
     });
 });

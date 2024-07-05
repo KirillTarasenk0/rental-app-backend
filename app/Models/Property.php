@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Property extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'user_id',
         'title',
@@ -26,22 +27,27 @@ class Property extends Model
         'internet',
         'city',
     ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
+
     public function propertyImages(): HasMany
     {
         return $this->hasMany(PropertyImage::class);
     }
+
     public function rentalRequests(): HasMany
     {
         return $this->hasMany(RentalRequest::class);
     }
+
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
     }
+
     public function favorites(): HasMany
     {
         return $this->hasMany(Favorite::class);

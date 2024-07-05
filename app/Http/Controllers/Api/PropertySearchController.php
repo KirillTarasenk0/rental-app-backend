@@ -11,8 +11,9 @@ use App\Http\Resources\PropertyResource;
 class PropertySearchController extends Controller
 {
     public function __construct(
-        private PropertySearchService $propertySearchService
+        private readonly PropertySearchService $propertySearchService
     ) {}
+
     public function showSearchedProperties(PropertyRequest $request): AnonymousResourceCollection
     {
         return PropertyResource::collection($this->propertySearchService->getSearchedProperties($request));

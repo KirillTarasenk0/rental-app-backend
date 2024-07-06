@@ -6,7 +6,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use App\Contracts\PropertySearchServiceContract;
 use App\Models\Property;
 use App\Http\Requests\Property\PropertyRequest;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 class PropertySearchService implements PropertySearchServiceContract
 {
@@ -55,5 +56,10 @@ class PropertySearchService implements PropertySearchServiceContract
         });
 
         return $propertiesQuery->paginate();
+    }
+
+    public function getUserLastAddedProperty(): Builder
+    {
+        return Property::query()->where('user_id', Auth::id())->latest()->first();
     }
 }

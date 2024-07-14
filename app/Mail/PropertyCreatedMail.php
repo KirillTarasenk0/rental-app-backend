@@ -12,25 +12,21 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Support\Facades\Auth;
 use App\Services\PropertySearchService;
-use Illuminate\Database\Eloquent\Builder;
 
 class PropertyCreatedMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private Builder $userLastAddedProperty;
-    private PropertySearchService $propertySearchService;
+    private Property $userLastAddedProperty;
 
     public function __construct(PropertySearchService $propertySearchService)
     {
-        $this->propertySearchService = $propertySearchService;
-        $this->userLastAddedProperty = $this->propertySearchService->getUserLastAddedProperty();
+        $this->userLastAddedProperty = $propertySearchService->getUserLastAddedProperty();
     }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('realt@yandex.ru', 'Realt Support'),
             subject: 'Поздравляем! Объявление было успешно создано!',
         );
     }

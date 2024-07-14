@@ -3,15 +3,21 @@
 namespace App\Observers;
 
 use App\Models\Property;
+use App\Mail\PropertyCreatedMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Events\ShouldHandleEventsAfterCommit;
+use App\Services\PropertySearchService;
 
-class PropertyObserver
+class PropertyObserver implements ShouldHandleEventsAfterCommit
 {
-    /**
-     * Handle the Property "created" event.
-     */
+    public function __construct(
+        private readonly PropertySearchService $propertySearchService,
+    ) {}
+
     public function created(Property $property): void
     {
-        //
+        Mail::to('kirtaras228@yandex.ru')->queue(new PropertyCreatedMail($this->propertySearchService));
     }
 
     /**

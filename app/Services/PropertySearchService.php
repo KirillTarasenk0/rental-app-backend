@@ -58,8 +58,14 @@ class PropertySearchService implements PropertySearchServiceContract
         return $propertiesQuery->paginate();
     }
 
-    public function getUserLastAddedProperty(): Builder
+    public function getUserLastAddedProperty(): ?Property
     {
-        return Property::query()->where('user_id', Auth::id())->latest()->first();
+        $property = Property::query()->where('user_id', Auth::id())->latest()->first();
+
+        if ($property instanceof Property) {
+            return $property;
+        }
+
+        return null;
     }
 }

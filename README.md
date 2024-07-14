@@ -16,3 +16,5 @@ DB_PASSWORD=root
 php artisan key:generate
 
 php artisan serve
+
+php artisan db:seed

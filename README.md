@@ -13,6 +13,8 @@ DB_DATABASE=rental_app
 DB_USERNAME=root
 DB_PASSWORD=root
 
+php artisan migrate
+
 php artisan key:generate
 
 php artisan serve
